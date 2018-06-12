@@ -18,14 +18,14 @@ namespace SportStore.Domain.Entities
         public string Line2 { get; set; }
         public string Line3 { get; set; }
 
-        [Required(ErrorMessage ="城市")]
+        [Required(ErrorMessage ="城市不能为空")]
         public string City { get; set; }
 
-        [Required(ErrorMessage ="状态")]
+        [Required(ErrorMessage ="状态不能为空")]
         public string State { get; set; }
         public string Zip { get; set; }
 
-        [Required(ErrorMessage = "国际")]
+        [Required(ErrorMessage = "国家不能为空")]
         public string Country { get; set; }
         public bool GiftWrap { get; set; }
     }

@@ -51,7 +51,10 @@ namespace SportStore.Domain.Entities
             lineCollection.Clear();
         }
 
-        public IEnumerable<CartLine> lines {
+        /// <summary>
+        /// 查看购物车内商品
+        /// </summary>
+        public IEnumerable<CartLine> Lines {
             get { return lineCollection; }
         }
     }

@@ -21,7 +21,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var line in Model.Cart.lines) {
+        @foreach (var line in Model.Cart.Lines) {
             <tr>
                 <td class="text-left">@line.Quantity</td>
                 <td class="text-left">@line.Product.Name</td>

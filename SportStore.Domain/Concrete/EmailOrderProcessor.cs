@@ -49,7 +49,7 @@ namespace SportStore.Domain.Concrete
 
                 StringBuilder body = new StringBuilder().AppendLine("a new order has  been submitted").AppendLine("---").AppendLine("Items");
 
-                foreach(var line in cart.lines){
+                foreach(var line in cart.Lines){
                     var subtotal = line.Product.Price * line.Quantity;
                     body.AppendFormat("{0}x{1}(subtotal:{2:c})", line.Quantity, line.Product.Name, subtotal);
                 }

@@ -63,18 +63,34 @@ namespace SportStore.WebUI.Controllers
             return RedirectToAction("Index", new { returnUrl });
         }
 
+        /// <summary>
+        /// 购物车摘要
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <returns></returns>
         public PartialViewResult Summary(Cart cart)
         {
             return PartialView(cart);
         }
 
+        /// <summary>
+        /// 结算
+        /// </summary>
+        /// <returns></returns>
         public ViewResult Checkout()
         {
             return View(new ShippingDetails());
         }
 
+        /// <summary>
+        /// 结算
+        /// </summary>
+        /// <param name="cart"></param>
+        /// <param name="shippingDetails"></param>
+        /// <returns></returns>
+        [HttpPost]
         public ViewResult Checkout(Cart cart, ShippingDetails shippingDetails) {
-            if (cart.lines.Count() == 0) {
+            if (cart.Lines.Count() == 0) {
                 ModelState.AddModelError("","Sorry,your cart is empty!");
             }
             if (ModelState.IsValid)
