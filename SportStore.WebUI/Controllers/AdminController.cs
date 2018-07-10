@@ -25,7 +25,7 @@ namespace SportStore.WebUI.Controllers
         
         public ActionResult Index()
         {
-            return View(repository.Products);
+            return View(this.repository.Products);
         }
 
         /// <summary>
@@ -56,10 +56,16 @@ namespace SportStore.WebUI.Controllers
         /// <param name="product"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Edit(Product product)
+        public ActionResult Edit(Product product,HttpPostedFileBase image=null)
         {
             if (ModelState.IsValid)
             {
+                if (image != null)
+                {
+                    product.ImageMimeType = image.ContentType;
+                    product.ImageData = new byte[image.ContentLength];
+                    image.InputStream.Read(product.ImageData, 0, image.ContentLength);
+                }
                 repository.SaveProduct(product);
                 TempData["message"] = string.Format("{0} has beensave", product.Name);
                 return RedirectToAction("Index");
@@ -70,7 +76,11 @@ namespace SportStore.WebUI.Controllers
             }
         }
 
-
+        /// <summary>
+        /// 删除产品
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
         public ActionResult Delete(int productId)
         {
             Product deleteProduct = repository.DeleteProduct(productId);

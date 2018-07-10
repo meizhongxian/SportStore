@@ -19,6 +19,12 @@ namespace SportStore.WebUI.Controllers
             this.repository = productRepository;
         }
 
+        /// <summary>
+        /// 返回产品列表
+        /// </summary>
+        /// <param name="category"></param>
+        /// <param name="page"></param>
+        /// <returns></returns>
         public ActionResult List(string category, int page = 1)
         {
             ProductsListViewModel model = new ProductsListViewModel
@@ -39,6 +45,25 @@ namespace SportStore.WebUI.Controllers
                 CurrentCategory = category
             };
             return View(model);
+        }
+
+        /// <summary>
+        /// 返回图片
+        /// </summary>
+        /// <param name="productId"></param>
+        /// <returns></returns>
+        public FileContentResult GetImage(int productId)
+        {
+            Product product = this.repository.Products.FirstOrDefault(p => p.ProductID == productId);
+
+            if (product != null)
+            {
+                return File(product.ImageData, product.ImageMimeType);
+            }
+            else
+            {
+                return null;
+            }
         }
     }
 }

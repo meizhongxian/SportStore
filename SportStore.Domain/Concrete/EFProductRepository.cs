@@ -24,7 +24,7 @@ namespace SportStore.Domain.Concrete
         {
             if (product.ProductID == 0)
             {
-                context.Products.Add(product);
+                this.context.Products.Add(product);
             }
             else {
                 Product dbEntry = context.Products.Find(product.ProductID);
@@ -33,6 +33,8 @@ namespace SportStore.Domain.Concrete
                     dbEntry.Description = product.Description;
                     dbEntry.Price = product.Price;
                     dbEntry.Category = product.Category;
+                    dbEntry.ImageData = product.ImageData;
+                    dbEntry.ImageMimeType = product.ImageMimeType;
                 }
             }
 
